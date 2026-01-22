@@ -2,8 +2,14 @@
 ## Title: Dungeon Teleport
 ## Notes: Adds clickable teleport functionality to Mythic+ dungeon icons in the Challenges UI
 ## Author: Acorn-Bloodhoof
-## Version: 1.0.0
+## Version: 1.0.1
 ## SavedVariables: DungeonTeleportDB
 ## IconTexture: Interface\Icons\Spell_Arcane_Teleportundercity
+
+## Category: Action Bars
+
+## X-Category: Action Bars
+## X-Website: https://github.com/dfrezell/DungeonTeleport
+## X-Curse-Project-ID: 1440396
 
 DungeonTeleport.lua
