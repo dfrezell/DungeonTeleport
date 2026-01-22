@@ -146,6 +146,7 @@ After making changes:
 - `CHANGELOG.md` - Version history and changes
 - `LICENSE` - MIT License
 - `README.md` - This file
+- `AGENTS.md` - AI agent development guidelines
 
 ## Credits
 
@@ -159,15 +160,84 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
 ## Development
 
+### Branching Workflow
+
+This project uses a feature branch workflow:
+
+**Branch Naming:**
+- `TASK-*` - New features or enhancements (e.g., `TASK-add_midnight_season_1`)
+- `FIX-*` - Bug fixes (e.g., `FIX-tooltip_memory_leak`)
+
+**Development Process:**
+
+1. Create a feature branch:
+   ```bash
+   git checkout -b TASK-your-feature-name
+   ```
+
+2. Make your changes to the code
+
+3. Update [CHANGELOG.md](CHANGELOG.md) with your changes
+
+4. Commit your changes:
+   ```bash
+   git add .
+   git commit -m "Description of changes"
+   ```
+
+5. Push your branch:
+   ```bash
+   git push origin TASK-your-feature-name
+   ```
+
+6. Create a Pull Request on GitHub
+
+7. Merge the PR to `main`
+
 ### Creating Releases
 
-This project uses automated releases via GitHub Actions:
+After merging your changes to `main`:
 
-1. Update version number in [DungeonTeleport.toc](DungeonTeleport.toc)
-2. Update [CHANGELOG.md](CHANGELOG.md) with changes
-3. Commit changes: `git commit -am "Release v1.0.1"`
-4. Create and push tag: `git tag v1.0.1 && git push origin v1.0.1`
-5. GitHub Actions will automatically package and upload to CurseForge
+1. Update version number in [DungeonTeleport.toc](DungeonTeleport.toc):
+   ```
+   ## Version: 1.1.0
+   ```
+
+2. Update [CHANGELOG.md](CHANGELOG.md) with version details:
+   ```markdown
+   ## [1.1.0] - 2026-XX-XX
+
+   ### Added
+   - Your new features
+
+   ### Fixed
+   - Your bug fixes
+   ```
+
+3. Commit the version bump:
+   ```bash
+   git add DungeonTeleport.toc CHANGELOG.md
+   git commit -m "Release v1.1.0"
+   git push origin main
+   ```
+
+4. Create and push the release tag:
+   ```bash
+   git tag v1.1.0
+   git push origin v1.1.0
+   ```
+
+5. GitHub Actions will automatically:
+   - Package the addon
+   - Upload to CurseForge
+   - Create a GitHub release
+
+### Version Numbering
+
+Follow [Semantic Versioning](https://semver.org/):
+- **Major** (X.0.0): Breaking changes, major rewrites
+- **Minor** (1.X.0): New features, new season dungeons
+- **Patch** (1.0.X): Bug fixes, minor improvements
 
 ### Setup CurseForge Publishing
 
@@ -179,6 +249,10 @@ To enable automated CurseForge releases:
 4. Update the project ID in [.github/workflows/release.yml](.github/workflows/release.yml)
 
 Optional: Add `WAGO_API_TOKEN` secret for Wago.io releases
+
+### For AI Agents
+
+If you're an AI agent (like Claude Code) working on this project, please see [AGENTS.md](AGENTS.md) for detailed guidelines on the development workflow and coding standards.
 
 ## License
 
