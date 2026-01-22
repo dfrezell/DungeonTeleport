@@ -1,0 +1,19 @@
+# WoW AddOn Development
+*.bak
+*.backup
+*~
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Packager files
+.release/
+*.zip
+
+# OS files
+desktop.ini
