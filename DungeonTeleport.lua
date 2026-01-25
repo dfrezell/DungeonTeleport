@@ -234,16 +234,30 @@ function DungeonTeleport:ApplyButtonState(button, spellID, isKnown)
     end
 end
 
+function DungeonTeleport:AddCooldownLines(spellID)
+    if IsSpellKnown(spellID) then
+        local cooldownInfo = C_Spell.GetSpellCooldown(spellID)
+
+        if not cooldownInfo.startTime or not cooldownInfo.duration then
+            GameTooltip:AddLine(SPELL_FAILED_NOT_KNOWN, 1, 0, 0)
+        elseif cooldownInfo.duration == 0 or cooldownInfo.duration <= self:GetGCDDuration() then
+            GameTooltip:AddLine(READY, 0, 1, 0)
+        else
+            local remainingTime = cooldownInfo.startTime + cooldownInfo.duration - GetTime()
+            GameTooltip:AddLine(SecondsToTime(math.ceil(remainingTime)), 1, 0, 0)
+        end
+    else
+        GameTooltip:AddLine(SPELL_FAILED_NOT_KNOWN, 1, 0, 0)
+    end
+end
+
 function DungeonTeleport:ShowSpellTooltip(button)
     local currentSpellID = button.teleportSpellID
     if not currentSpellID then return end
-    local isKnown = IsSpellKnown(currentSpellID)
     GameTooltip:SetOwner(button, "ANCHOR_RIGHT")
     GameTooltip:SetSpellByID(currentSpellID)
-    if not isKnown then
-        GameTooltip:AddLine(" ")
-        GameTooltip:AddLine(SPELL_FAILED_NOT_KNOWN, 1, 0, 0)
-    end
+    GameTooltip:AddLine(" ")
+    self:AddCooldownLines(currentSpellID)
     GameTooltip:Show()
 end
 
@@ -273,20 +287,7 @@ function DungeonTeleport:UpdateGameTooltip(parent, spellID, initialize, tooltipO
     GameTooltip:AddLine(" ")
     GameTooltip:AddLine(spellName or TELEPORT_TO_DUNGEON)
 
-    if IsSpellKnown(spellID) then
-        local cooldownInfo = C_Spell.GetSpellCooldown(spellID)
-
-        if not cooldownInfo.startTime or not cooldownInfo.duration then
-            GameTooltip:AddLine(SPELL_FAILED_NOT_KNOWN, 1, 0, 0)
-        elseif cooldownInfo.duration == 0 or cooldownInfo.duration <= self:GetGCDDuration() then
-            GameTooltip:AddLine(READY, 0, 1, 0)
-        else
-            local remainingTime = cooldownInfo.startTime + cooldownInfo.duration - GetTime()
-            GameTooltip:AddLine(SecondsToTime(math.ceil(remainingTime)), 1, 0, 0)
-        end
-    else
-        GameTooltip:AddLine(SPELL_FAILED_NOT_KNOWN, 1, 0, 0)
-    end
+    self:AddCooldownLines(spellID)
 
     GameTooltip:Show()
 
@@ -597,7 +598,11 @@ function DungeonTeleport:UpdateRaidButtons()
         local name, _, _, _, _, _, _, _, _, _, isRaid = EJ_GetInstanceInfo(instanceID)
         if name and isRaid then
             self:CreateRaidJournalButton(instanceID)
+        elseif self.raidJournalButton then
+            self.raidJournalButton:Hide()
         end
+    elseif self.raidJournalButton then
+        self.raidJournalButton:Hide()
     end
 end
 

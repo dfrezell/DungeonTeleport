@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Raid teleport button support in Encounter Journal (Adventure Guide)
 - Two button locations for raid teleports:
   - Location 1: Overlay buttons on raid entries in the Adventure Guide raid list
-  - Location 2: Standalone "Teleport to Raid" button inside individual raid journals (bottom-right)
+  - Location 2: Standalone "Teleport" button inside individual raid journals (bottom-right)
 - Support for Manaforge Omega raid teleport (spell ID: 1239155)
 - Placeholder structure for all expansion raids with teleport spells
 - Faction-specific raid teleport handling framework

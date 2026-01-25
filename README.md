@@ -5,7 +5,7 @@ A World of Warcraft addon that adds clickable teleport functionality to Mythic+ 
 ## Features
 
 - Click dungeon icons in the Challenges UI to teleport directly to them
-- Tooltips show spell cooldown status with real-time updates
+- Tooltips show spell cooldown status with real-time updates (dungeons and raids)
 - Raid list and raid journal teleport buttons in the Encounter Journal
 - Supports faction-specific teleports (Alliance/Horde)
 - Automatically handles all current and past Mythic+ seasons
