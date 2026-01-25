@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-01-25
+
+### Added
+- Raid teleport button support in Encounter Journal (Adventure Guide)
+- Two button locations for raid teleports:
+  - Location 1: Overlay buttons on raid entries in the Adventure Guide raid list
+  - Location 2: Standalone "Teleport" button inside individual raid journals (bottom-right)
+- Support for Manaforge Omega raid teleport (spell ID: 1239155)
+- Placeholder structure for all expansion raids with teleport spells
+- Faction-specific raid teleport handling framework
+- New slash command: `/dt raids` - Lists all raids with teleport spells
+- Hooks into Blizzard_EncounterJournal addon for raid UI integration
+
+### Changed
+- Extended `/dt reload` command to refresh both dungeon and raid buttons
+- Updated help text to include raid functionality
+- Enhanced addon architecture with modular raid teleport system
+- Updated localized descriptions to mention raid support
+
+### Technical
+- New module: Raid Teleport System
+- New data table: `RAID_INSTANCE_TO_SPELL_IDS`
+- New data table: `RAID_FACTION_SPECIFIC_TELEPORTS`
+- New functions: `InitializeRaidTeleports()`, `CreateRaidListButton()`, `CreateRaidListButtons()`, `CreateRaidJournalButton()`, `UpdateRaidButtons()`, `ApplyFactionSpecificRaidTeleports()`, `GetSpellForTeleport()`, `ApplyButtonState()`, `ShowSpellTooltip()`
+- Reuses existing utilities: `UpdateGameTooltip()`, `GetGCDDuration()`
+- Event handler now listens for `Blizzard_EncounterJournal` addon loading
+- Raid list integration supports ScrollBox callbacks and disables unknown spell buttons
+
 ## [1.1.0] - 2026-01-25
 
 ### Added
@@ -60,6 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.2.0]: https://github.com/dfrezell/DungeonTeleport/releases/tag/v1.2.0
 [1.1.0]: https://github.com/dfrezell/DungeonTeleport/releases/tag/v1.1.0
 [1.0.1]: https://github.com/dfrezell/DungeonTeleport/releases/tag/v1.0.1
 [1.0.0]: https://github.com/dfrezell/DungeonTeleport/releases/tag/v1.0.0

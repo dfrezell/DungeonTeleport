@@ -1,20 +1,21 @@
 # Dungeon Teleport
 
-A World of Warcraft addon that adds clickable teleport functionality to Mythic+ dungeon icons in the Challenges UI (Great Vault screen).
+A World of Warcraft addon that adds clickable teleport functionality to Mythic+ dungeon icons in the Challenges UI (Great Vault screen) and raid entries in the Encounter Journal.
 
 ## Features
 
 - Click dungeon icons in the Challenges UI to teleport directly to them
-- Tooltips show spell cooldown status with real-time updates
+- Tooltips show spell cooldown status with real-time updates (dungeons and raids)
+- Raid list and raid journal teleport buttons in the Encounter Journal
 - Supports faction-specific teleports (Alliance/Horde)
 - Automatically handles all current and past Mythic+ seasons
 - Ready for Midnight expansion dungeons (see below)
 
 ## Installation
 
-### CurseForge (Recommended)
+### Addon Managers
 1. Install via the [CurseForge app](https://www.curseforge.com/download/app) or [WowUp](https://wowup.io/)
-2. Search for "Dungeon Teleport"
+2. Search for "DungeonTeleport"
 3. Click Install
 
 ### Manual Installation
@@ -32,12 +33,14 @@ Once installed, the addon works automatically:
 1. Open the Great Vault / Challenges UI (default: Shift+J)
 2. Hover over any dungeon icon at the bottom to see the teleport tooltip
 3. Click any dungeon icon to cast the teleport spell (if you know it)
+4. Open the Encounter Journal and select a raid to see teleport buttons
 
 ### Commands
 
 - `/dt` or `/dungeonteleport` - Display addon info
 - `/dt help` - Show available commands
-- `/dt reload` - Manually refresh the dungeon teleport buttons
+- `/dt reload` - Manually refresh the dungeon and raid teleport buttons
+- `/dt raids` - List raids that have teleport spells configured
 
 ## Adding Midnight Expansion Dungeons
 
@@ -45,6 +48,7 @@ When Midnight launches and new dungeons are added, you'll need to update the spe
 
 ### Step 1: Find the Map IDs
 
+#### For Dungeons
 In-game, use this macro to get the current season's dungeon map IDs:
 ```
 /run for i,v in ipairs(ChallengesFrame.DungeonIcons)do if v.mapID then n=C_ChallengeMode.GetMapUIInfo(v.mapID)print(i,n or"?",v.mapID)end end
@@ -55,6 +59,23 @@ This will print a list like:
 1 The Stonevault 501
 2 The Necrotic Wake 376
 ...
+```
+
+#### For Raids
+In-game, use this macro while you have the Raid Journal open to the raid of interest
+```
+/run for t=1,EJ_GetNumTiers() do EJ_SelectTier(t) print("=== "..EJ_GetTierInfo(t).." ===") local i=1 while true do local id,name=EJ_GetInstanceByIndex(i,true) if not id then break end print(" ",name,"ID:",id) i=i+1 end end
+```
+
+This will print a list like:
+```
+=== Classic ===
+ Molten Core ID: 741
+ Blackwing Lair ID: 742
+ ...
+=== Current Season ===
+ Khaz Algar ID: 1278
+ Manaforge Omega ID: 1302
 ```
 
 ### Step 2: Find the Teleport Spell IDs
@@ -122,6 +143,7 @@ After making changes:
 - Verify you have learned the teleport spell
 - Some teleports require specific achievements or reputation
 - Check the tooltip to see the cooldown status
+- Unknown spells show a disabled button with a "Spell not learned" tooltip line
 
 ### Combat lockdown errors
 - The addon cannot create or modify buttons during combat
