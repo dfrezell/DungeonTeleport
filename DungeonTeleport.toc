@@ -10,19 +10,19 @@
 ## Title-koKR: 던전 순간이동
 ## Title-zhCN: 地下城传送
 ## Title-zhTW: 地城傳送
-## Notes: Adds clickable teleport functionality to Mythic+ dungeon icons in the Challenges UI
-## Notes-deDE: Fügt klickbare Teleportfunktionalität zu Mythisch+-Dungeons-Symbolen in der Herausforderungen-UI hinzu
-## Notes-esES: Añade funcionalidad de teletransporte en los iconos de mazmorras Míticas+ en la UI de Desafíos
-## Notes-esMX: Añade funcionalidad de teletransporte en los iconos de mazmorras Míticas+ en la UI de Desafíos
-## Notes-frFR: Ajoute une fonctionnalité de téléportation cliquable aux icônes de donjons Mythique+ dans l'interface des Défis
-## Notes-itIT: Aggiunge la funzionalità di teletrasporto cliccabile alle icone delle spedizioni Mitiche+ nell'interfaccia delle Sfide
-## Notes-ptBR: Adiciona funcionalidade de teletransporte clicável aos ícones de masmorras Míticas+ na interface de Desafios
-## Notes-ruRU: Добавляет возможность телепортации при клике на иконки подземелий Мифик+ в интерфейсе испытаний
-## Notes-koKR: 도전 과제 UI의 신화+ 던전 아이콘에 클릭 가능한 순간이동 기능을 추가합니다
-## Notes-zhCN: 为挑战界面中的史诗钥石地下城图标添加可点击的传送功能
-## Notes-zhTW: 為挑戰介面中的傳奇鑰石地城圖示添加可點擊的傳送功能
+## Notes: Adds clickable teleport functionality to Mythic+ dungeon icons and raid entries
+## Notes-deDE: Fügt klickbare Teleportfunktionalität zu Mythisch+-Dungeons und Schlachtzügen hinzu
+## Notes-esES: Añade funcionalidad de teletransporte a los iconos de mazmorras Míticas+ y bandas
+## Notes-esMX: Añade funcionalidad de teletransporte a los iconos de mazmorras Míticas+ y bandas
+## Notes-frFR: Ajoute une fonctionnalité de téléportation aux donjons Mythique+ et aux raids
+## Notes-itIT: Aggiunge la funzionalità di teletrasporto alle spedizioni Mitiche+ e alle incursioni
+## Notes-ptBR: Adiciona funcionalidade de teletransporte às masmorras Míticas+ e raides
+## Notes-ruRU: Добавляет телепортацию к подземельям Мифик+ и рейдам
+## Notes-koKR: 신화+ 던전과 공격대에 순간이동 기능을 추가합니다
+## Notes-zhCN: 为史诗钥石地下城和团队副本添加传送功能
+## Notes-zhTW: 為傳奇鑰石地城和團隊副本添加傳送功能
 ## Author: Acorn-Bloodhoof
-## Version: 1.0.1
+## Version: 1.2.0
 ## SavedVariables: DungeonTeleportDB
 ## IconTexture: Interface\Icons\Spell_Arcane_Teleportundercity
 
