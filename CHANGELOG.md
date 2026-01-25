@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-01-25
+
+### Added
+- Midnight Season 1 dungeon teleport support
+- 7 new dungeon teleports:
+  - Windrunner Spire
+  - Skyreach
+  - Seat of the Triumvirate
+  - Pit of Saron
+  - Nexus-Point Xenas
+  - Maisara Caverns
+  - Magisters' Terrace
+- Localized addon titles and descriptions for all 11 WoW languages
+- Wago.io integration for automated releases
+- Development documentation (AGENTS.md)
+
+### Changed
+- Enhanced README with comprehensive development workflow
+- Improved release automation with Wago.io support
+
 ## [1.0.1] - 2026-01-21
 
 ### Changed
@@ -40,5 +60,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.1.0]: https://github.com/dfrezell/DungeonTeleport/releases/tag/v1.1.0
 [1.0.1]: https://github.com/dfrezell/DungeonTeleport/releases/tag/v1.0.1
 [1.0.0]: https://github.com/dfrezell/DungeonTeleport/releases/tag/v1.0.0

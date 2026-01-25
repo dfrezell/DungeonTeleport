@@ -239,17 +239,6 @@ Follow [Semantic Versioning](https://semver.org/):
 - **Minor** (1.X.0): New features, new season dungeons
 - **Patch** (1.0.X): Bug fixes, minor improvements
 
-### Setup CurseForge Publishing
-
-To enable automated CurseForge releases:
-
-1. Create a CurseForge API key at https://console.curseforge.com/
-2. Add it as `CF_API_KEY` in your GitHub repository secrets
-3. Get your CurseForge project ID from your addon's page URL
-4. Update the project ID in [.github/workflows/release.yml](.github/workflows/release.yml)
-
-Optional: Add `WAGO_API_TOKEN` secret for Wago.io releases
-
 ### For AI Agents
 
 If you're an AI agent (like Claude Code) working on this project, please see [AGENTS.md](AGENTS.md) for detailed guidelines on the development workflow and coding standards.
