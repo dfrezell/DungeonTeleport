@@ -101,9 +101,13 @@ DungeonTeleport.MAP_ID_TO_SPELL_IDS = {
     -----------------------------------------------------------
     -- Midnight Expansion - Season 1
     -----------------------------------------------------------
-    -- TODO: Add Midnight Season 1 dungeon teleport spell IDs
-    -- Example format:
-    -- [600] = {SPELL_ID}, -- Dungeon Name
+    [557] = {1254400}, -- Windrunner Spire
+    [161] = {159898}, -- Skyreach
+    [239] = {1254551}, -- Seat of the Triumvirate
+    [556] = {1254555}, -- Pit of Saron
+    [559] = {1254563}, -- Nexus-Point Xenas
+    [560] = {1254559}, -- Maisara Caverns
+    [558] = {1254572}, -- Magisters' Terrace
 
     -----------------------------------------------------------
     -- Midnight Expansion - Season 2
