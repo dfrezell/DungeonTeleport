@@ -210,6 +210,12 @@ Add new interface version to the comma-separated list.
 4. Update version in .toc
 5. Show commit commands
 
+### TODO Tracking
+
+1. Add follow-up items to `TODO.md`
+2. As TODOs are completed, remove them from `TODO.md`
+3. When adding or removing features, update `CHANGELOG.md` and `README.md`
+
 ## CurseForge Integration
 
 ### Automated Releases
