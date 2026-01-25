@@ -13,9 +13,9 @@ A World of Warcraft addon that adds clickable teleport functionality to Mythic+ 
 
 ## Installation
 
-### CurseForge (Recommended)
+### Addon Managers
 1. Install via the [CurseForge app](https://www.curseforge.com/download/app) or [WowUp](https://wowup.io/)
-2. Search for "Dungeon Teleport"
+2. Search for "DungeonTeleport"
 3. Click Install
 
 ### Manual Installation
