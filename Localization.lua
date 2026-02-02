@@ -1,0 +1,102 @@
+-----------------------------------------------------------
+-- Localization
+-----------------------------------------------------------
+
+DungeonTeleport_L = DungeonTeleport_L or {}
+local L = DungeonTeleport_L
+
+-- Base (enUS)
+L.TELEPORT = "Teleport"
+L.LOADED_SUCCESS = "%s loaded successfully!"
+L.INVALID_FACTION_SPELL = "[%s] Warning: Invalid faction-specific spell ID %s for map %d, using fallback"
+L.RAID_LIST_LABEL = "%s - Raids with teleport spells:"
+L.UNKNOWN_RAID = "  [Unknown Raid] (ID: %d)"
+L.COMMANDS_LABEL = "%s Commands:"
+L.HELP_RELOAD = "  /dt reload - Refresh dungeon and raid teleport buttons"
+L.HELP_RAIDS = "  /dt raids - List all raids with teleport spells"
+L.HELP_HELP = "  /dt help - Show this help message"
+L.VERSION_INFO = "%s v1.2.0 - Adds teleport buttons to dungeon and raid icons"
+L.HELP_HINT = "Type /dt help for commands"
+L.MAP_BUTTON_MISSING = "|cffff0000DungeonTeleport|r: Could not find mapButton frame"
+L.BUTTONS_REFRESHED = "%s: Buttons refreshed"
+
+local locale = GetLocale()
+if locale == "deDE" then
+    L.TELEPORT = "Teleportieren"
+    L.LOADED_SUCCESS = "%s erfolgreich geladen!"
+    L.INVALID_FACTION_SPELL = "[%s] Warnung: Ungueltige fraktionsspezifische Zauber-ID %s fuer Karte %d, verwende Fallback"
+    L.RAID_LIST_LABEL = "%s - Schlachtzuege mit Teleport-Zaubern:"
+    L.UNKNOWN_RAID = "  [Unbekannter Schlachtzug] (ID: %d)"
+    L.COMMANDS_LABEL = "%s Befehle:"
+    L.HELP_RELOAD = "  /dt reload - Dungeon- und Schlachtzug-Teleportknopfe aktualisieren"
+    L.HELP_RAIDS = "  /dt raids - Alle Schlachtzuege mit Teleport-Zaubern anzeigen"
+    L.HELP_HELP = "  /dt help - Diese Hilfe anzeigen"
+    L.VERSION_INFO = "%s v1.2.0 - Fuegt Teleportknopfe zu Dungeon- und Schlachtzug-Icons hinzu"
+    L.HELP_HINT = "Tippe /dt help fuer Befehle"
+    L.MAP_BUTTON_MISSING = "|cffff0000DungeonTeleport|r: Konnte den mapButton-Frame nicht finden"
+    L.BUTTONS_REFRESHED = "%s: Knoepfe aktualisiert"
+elseif locale == "frFR" then
+    L.TELEPORT = "Teleportation"
+    L.LOADED_SUCCESS = "%s charge avec succes !"
+    L.INVALID_FACTION_SPELL = "[%s] Avertissement: ID de sort specifique a la faction %s invalide pour la carte %d, utilisation du secours"
+    L.RAID_LIST_LABEL = "%s - Raids avec sorts de teleportation :"
+    L.UNKNOWN_RAID = "  [Raid inconnu] (ID: %d)"
+    L.COMMANDS_LABEL = "%s Commandes:"
+    L.HELP_RELOAD = "  /dt reload - Actualiser les boutons de teleportation donjons et raids"
+    L.HELP_RAIDS = "  /dt raids - Lister tous les raids avec sorts de teleportation"
+    L.HELP_HELP = "  /dt help - Afficher cette aide"
+    L.VERSION_INFO = "%s v1.2.0 - Ajoute des boutons de teleportation aux icones de donjon et raid"
+    L.HELP_HINT = "Tapez /dt help pour les commandes"
+    L.MAP_BUTTON_MISSING = "|cffff0000DungeonTeleport|r: Impossible de trouver le frame mapButton"
+    L.BUTTONS_REFRESHED = "%s: Boutons actualises"
+elseif locale == "esES" or locale == "esMX" then
+    L.TELEPORT = "Teletransporte"
+    L.LOADED_SUCCESS = "%s cargado correctamente!"
+    L.INVALID_FACTION_SPELL = "[%s] Advertencia: ID de hechizo especifico de faccion %s invalido para el mapa %d, usando alternativa"
+    L.RAID_LIST_LABEL = "%s - Bandas con hechizos de teletransporte:"
+    L.UNKNOWN_RAID = "  [Banda desconocida] (ID: %d)"
+    L.COMMANDS_LABEL = "%s Comandos:"
+    L.HELP_RELOAD = "  /dt reload - Actualiza botones de teletransporte de mazmorras y bandas"
+    L.HELP_RAIDS = "  /dt raids - Lista todas las bandas con hechizos de teletransporte"
+    L.HELP_HELP = "  /dt help - Muestra esta ayuda"
+    L.VERSION_INFO = "%s v1.2.0 - Anade botones de teletransporte a iconos de mazmorras y bandas"
+    L.HELP_HINT = "Escribe /dt help para ver comandos"
+    L.MAP_BUTTON_MISSING = "|cffff0000DungeonTeleport|r: No se pudo encontrar el frame mapButton"
+    L.BUTTONS_REFRESHED = "%s: Botones actualizados"
+elseif locale == "itIT" then
+    L.TELEPORT = "Teletrasporto"
+    L.LOADED_SUCCESS = "%s caricato con successo!"
+    L.INVALID_FACTION_SPELL = "[%s] Avviso: ID incantesimo specifico della fazione %s non valido per la mappa %d, uso fallback"
+    L.RAID_LIST_LABEL = "%s - Incursioni con incantesimi di teletrasporto:"
+    L.UNKNOWN_RAID = "  [Incursione sconosciuta] (ID: %d)"
+    L.COMMANDS_LABEL = "%s Comandi:"
+    L.HELP_RELOAD = "  /dt reload - Aggiorna i pulsanti di teletrasporto di spedizioni e incursioni"
+    L.HELP_RAIDS = "  /dt raids - Elenca tutte le incursioni con incantesimi di teletrasporto"
+    L.HELP_HELP = "  /dt help - Mostra questo aiuto"
+    L.VERSION_INFO = "%s v1.2.0 - Aggiunge pulsanti di teletrasporto alle icone di spedizioni e incursioni"
+    L.HELP_HINT = "Digita /dt help per i comandi"
+    L.MAP_BUTTON_MISSING = "|cffff0000DungeonTeleport|r: Impossibile trovare il frame mapButton"
+    L.BUTTONS_REFRESHED = "%s: Pulsanti aggiornati"
+elseif locale == "ptBR" then
+    L.TELEPORT = "Teletransporte"
+    L.LOADED_SUCCESS = "%s carregado com sucesso!"
+    L.INVALID_FACTION_SPELL = "[%s] Aviso: ID de feitico especifico de faccao %s invalido para o mapa %d, usando fallback"
+    L.RAID_LIST_LABEL = "%s - Raides com feiticos de teletransporte:"
+    L.UNKNOWN_RAID = "  [Raide desconhecida] (ID: %d)"
+    L.COMMANDS_LABEL = "%s Comandos:"
+    L.HELP_RELOAD = "  /dt reload - Atualiza botoes de teletransporte de masmorras e raides"
+    L.HELP_RAIDS = "  /dt raids - Lista todas as raides com feiticos de teletransporte"
+    L.HELP_HELP = "  /dt help - Mostra esta ajuda"
+    L.VERSION_INFO = "%s v1.2.0 - Adiciona botoes de teletransporte aos icones de masmorras e raides"
+    L.HELP_HINT = "Digite /dt help para comandos"
+    L.MAP_BUTTON_MISSING = "|cffff0000DungeonTeleport|r: Nao foi possivel encontrar o frame mapButton"
+    L.BUTTONS_REFRESHED = "%s: Botoes atualizados"
+elseif locale == "ruRU" then
+    L.TELEPORT = "Телепорт"
+elseif locale == "koKR" then
+    L.TELEPORT = "순간이동"
+elseif locale == "zhCN" then
+    L.TELEPORT = "传送"
+elseif locale == "zhTW" then
+    L.TELEPORT = "傳送"
+end

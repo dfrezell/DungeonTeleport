@@ -33,4 +33,5 @@
 ## X-Curse-Project-ID: 1440396
 ## X-Wago-ID: rN4krYGD
 
+Localization.lua
 DungeonTeleport.lua

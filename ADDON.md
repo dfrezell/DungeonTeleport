@@ -1,6 +1,6 @@
 # Dungeon Teleport
 
-A World of Warcraft addon that adds clickable teleport functionality to Mythic+ dungeon icons in the Challenges UI (Great Vault screen) and raid entries in the Encounter Journal.
+A World of Warcraft addon that adds clickable teleport functionality to Mythic+ dungeon icons in the Challenges UI (Great Vault screen) and raid entries in the Encounter Journal.  Based on Mend's Dungeon Teleport Buttons Weak Aura.
 
 ## Features
 
