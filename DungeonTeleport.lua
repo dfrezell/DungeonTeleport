@@ -5,6 +5,8 @@
 local ADDON_NAME = "DungeonTeleport"
 local DungeonTeleport = {}
 
+local L = DungeonTeleport_L or {}
+
 -- Initialize saved variables
 DungeonTeleportDB = DungeonTeleportDB or {}
 
@@ -188,8 +190,7 @@ function DungeonTeleport:ApplyFactionSpecificTeleports()
                 self.MAP_ID_TO_SPELL_IDS[mapID] = {spellID}
             else
                 -- Fallback to original spell ID if faction-specific one is invalid
-                print(string.format("[%s] Warning: Invalid faction-specific spell ID %s for map %d, using fallback",
-                    ADDON_NAME, tostring(spellID), mapID))
+                print(string.format(L.INVALID_FACTION_SPELL, ADDON_NAME, tostring(spellID), mapID))
             end
         end
     end
@@ -232,6 +233,21 @@ function DungeonTeleport:ApplyButtonState(button, spellID, isKnown)
     if button.SetNormalFontObject then
         button:SetNormalFontObject(isKnown and "GameFontNormal" or "GameFontDisable")
     end
+end
+
+function DungeonTeleport:SetButtonTextAndSize(button, text, minWidth, height, padding)
+    button:SetText(text)
+    if height then
+        button:SetHeight(height)
+    end
+
+    local textWidth = button:GetTextWidth()
+    if not textWidth or textWidth <= 0 then
+        button:SetWidth(minWidth)
+        return
+    end
+
+    button:SetWidth(math.max(minWidth, math.ceil(textWidth + padding)))
 end
 
 function DungeonTeleport:AddCooldownLines(spellID)
@@ -393,7 +409,7 @@ function DungeonTeleport:Initialize()
     self:InitializeRaidTeleports()
 
     self.initialized = true
-    print(string.format("|cff00ff00%s|r loaded successfully!", ADDON_NAME))
+    print(string.format("|cff00ff00" .. L.LOADED_SUCCESS .. "|r", ADDON_NAME))
 end
 
 -----------------------------------------------------------
@@ -444,14 +460,13 @@ function DungeonTeleport:CreateRaidListButton(parent, instanceID)
     local button = self.createdRaidButtons[parent]
     if not button then
         button = CreateFrame("Button", nil, parent, "InsecureActionButtonTemplate, UIPanelButtonTemplate")
-        button:SetSize(80, 18)
         button:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -6, 6)
-        button:SetText("Teleport")
         button:RegisterForClicks("AnyDown", "AnyUp")
         self.createdRaidButtons[parent] = button
     end
 
     self:ApplyButtonState(button, spellID, isKnown)
+    self:SetButtonTextAndSize(button, L.TELEPORT, 80, 18, 16)
     button:Show()
 
     -- Reuse existing tooltip system
@@ -549,7 +564,7 @@ function DungeonTeleport:CreateRaidJournalButton(instanceID)
     -- The instanceButton contains the raid image - use it as parent
     local instanceButton = EncounterJournal.encounter.instance
     if not instanceButton then
-        print("|cffff0000DungeonTeleport|r: Could not find mapButton frame")
+        print(L.MAP_BUTTON_MISSING)
         return
     end
 
@@ -559,10 +574,8 @@ function DungeonTeleport:CreateRaidJournalButton(instanceID)
                                     instanceButton,
                                     "InsecureActionButtonTemplate, UIPanelButtonTemplate")
 
-        button:SetSize(96, 22)
         -- Position on bottom-left of the image, matching Show Maps button style
         button:SetPoint("BOTTOMRIGHT", instanceButton, "BOTTOMRIGHT", -30, 130)
-        button:SetText("Teleport")
         button:SetFrameLevel(instanceButton:GetFrameLevel() + 10)
 
         -- Enable clicking for secure action buttons
@@ -583,6 +596,7 @@ function DungeonTeleport:CreateRaidJournalButton(instanceID)
     end
 
     self:ApplyButtonState(button, spellID, isKnown)
+    self:SetButtonTextAndSize(button, L.TELEPORT, 96, 22, 20)
     button:Show()
 end
 
@@ -692,25 +706,25 @@ SlashCmdList["DUNGEONTELEPORT"] = function(msg)
     if msg == "reload" or msg == "refresh" then
         DungeonTeleport:CreateDungeonButtons()
         DungeonTeleport:UpdateRaidButtons()
-        print(string.format("|cff00ff00%s|r: Buttons refreshed", ADDON_NAME))
+        print(string.format("|cff00ff00" .. L.BUTTONS_REFRESHED .. "|r", ADDON_NAME))
     elseif msg == "raids" then
-        print(string.format("|cff00ff00%s|r - Raids with teleport spells:", ADDON_NAME))
+        print(string.format("|cff00ff00" .. L.RAID_LIST_LABEL .. "|r", ADDON_NAME))
         for instanceID, spellIDs in pairs(DungeonTeleport.RAID_INSTANCE_TO_SPELL_IDS) do
             -- EJ_GetInstanceInfo returns the name as the first value
             local name = EJ_GetInstanceInfo(instanceID)
             if name and type(name) == "string" then
                 print(string.format("  %s (ID: %d)", name, instanceID))
             else
-                print(string.format("  [Unknown Raid] (ID: %d)", instanceID))
+                print(string.format(L.UNKNOWN_RAID, instanceID))
             end
         end
     elseif msg == "help" then
-        print(string.format("|cff00ff00%s|r Commands:", ADDON_NAME))
-        print("  /dt reload - Refresh dungeon and raid teleport buttons")
-        print("  /dt raids - List all raids with teleport spells")
-        print("  /dt help - Show this help message")
+        print(string.format("|cff00ff00" .. L.COMMANDS_LABEL .. "|r", ADDON_NAME))
+        print(L.HELP_RELOAD)
+        print(L.HELP_RAIDS)
+        print(L.HELP_HELP)
     else
-        print(string.format("|cff00ff00%s|r v1.2.0 - Adds teleport buttons to dungeon and raid icons", ADDON_NAME))
-        print("Type /dt help for commands")
+        print(string.format("|cff00ff00" .. L.VERSION_INFO .. "|r", ADDON_NAME))
+        print(L.HELP_HINT)
     end
 end
