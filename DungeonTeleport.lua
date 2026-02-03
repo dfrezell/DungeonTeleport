@@ -170,9 +170,115 @@ DungeonTeleport.activeTooltipTimers = {}
 -- Cache for created buttons to avoid recreation
 DungeonTeleport.createdButtons = {}
 
+-- Taco animation settings
+DungeonTeleport.tacoFrameDelay = 0.07
+DungeonTeleport.tacoFrameCount = 12
+DungeonTeleport.tacoFrameColumns = 4
+DungeonTeleport.tacoFrameRows = 3
+DungeonTeleport.tacoTexturePath = "Interface\\AddOns\\DungeonTeleport\\images\\taco_panda_sheet.png"
+DungeonTeleport.tacoTicker = nil
+DungeonTeleport.tacoFrameIndex = 1
+DungeonTeleport.tacoPreviewFrame = nil
+
 -----------------------------------------------------------
 -- Core Functions
 -----------------------------------------------------------
+
+function DungeonTeleport:GetTacoTexCoords(frameIndex)
+    local zeroBasedIndex = frameIndex - 1
+    local col = zeroBasedIndex % self.tacoFrameColumns
+    local row = math.floor(zeroBasedIndex / self.tacoFrameColumns)
+
+    local left = col / self.tacoFrameColumns
+    local right = (col + 1) / self.tacoFrameColumns
+    local top = row / self.tacoFrameRows
+    local bottom = (row + 1) / self.tacoFrameRows
+
+    return left, right, top, bottom
+end
+
+function DungeonTeleport:ApplyTacoFrame()
+    if not self.tacoPreviewFrame or not self.tacoPreviewFrame.texture then return end
+    local left, right, top, bottom = self:GetTacoTexCoords(self.tacoFrameIndex)
+    self.tacoPreviewFrame.texture:SetTexCoord(left, right, top, bottom)
+end
+
+function DungeonTeleport:StartTacoAnimation()
+    self:StopTacoAnimation()
+    self.tacoFrameIndex = 1
+    self:ApplyTacoFrame()
+
+    self.tacoTicker = C_Timer.NewTicker(self.tacoFrameDelay, function()
+        self.tacoFrameIndex = (self.tacoFrameIndex % self.tacoFrameCount) + 1
+        self:ApplyTacoFrame()
+    end)
+end
+
+function DungeonTeleport:StopTacoAnimation()
+    if self.tacoTicker then
+        self.tacoTicker:Cancel()
+        self.tacoTicker = nil
+    end
+end
+
+function DungeonTeleport:CreateTacoPreviewFrame()
+    if self.tacoPreviewFrame then
+        return self.tacoPreviewFrame
+    end
+
+    local frame = CreateFrame("Frame", "DungeonTeleportTacoFrame", UIParent, "BackdropTemplate")
+    frame:SetSize(340, 340)
+    frame:SetPoint("CENTER")
+    frame:SetFrameStrata("DIALOG")
+    frame:SetMovable(true)
+    frame:EnableMouse(true)
+    frame:RegisterForDrag("LeftButton")
+    frame:SetScript("OnDragStart", frame.StartMoving)
+    frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
+    frame:SetScript("OnHide", function()
+        DungeonTeleport:StopTacoAnimation()
+    end)
+
+    frame:SetBackdrop({
+        bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+        edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+        tile = true,
+        tileSize = 16,
+        edgeSize = 16,
+        insets = { left = 4, right = 4, top = 4, bottom = 4 },
+    })
+
+    frame:Hide()
+
+    local title = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    title:SetPoint("TOP", 0, -16)
+    title:SetText(L.TACO_TITLE or "Taco Panda")
+
+    local closeButton = CreateFrame("Button", nil, frame, "UIPanelCloseButton")
+    closeButton:SetPoint("TOPRIGHT", -6, -6)
+
+    local texture = frame:CreateTexture(nil, "ARTWORK")
+    texture:SetPoint("CENTER", 0, -8)
+    texture:SetSize(300, 300)
+    texture:SetTexture(self.tacoTexturePath)
+    frame.texture = texture
+
+    self.tacoPreviewFrame = frame
+    return frame
+end
+
+function DungeonTeleport:ToggleTacoPreview()
+    local frame = self:CreateTacoPreviewFrame()
+    if frame:IsShown() then
+        frame:Hide()
+        print(string.format("|cff00ff00%s|r", string.format(L.TACO_CLOSED, ADDON_NAME)))
+        return
+    end
+
+    frame:Show()
+    self:StartTacoAnimation()
+    print(string.format("|cff00ff00%s|r", string.format(L.TACO_OPENED, ADDON_NAME)))
+end
 
 --- Apply faction-specific teleport spell IDs based on player's faction
 --- This handles dungeons that have different teleport spells for Alliance and Horde
@@ -723,6 +829,9 @@ SlashCmdList["DUNGEONTELEPORT"] = function(msg)
         print(L.HELP_RELOAD)
         print(L.HELP_RAIDS)
         print(L.HELP_HELP)
+        print(L.HELP_TACO)
+    elseif msg == "taco" then
+        DungeonTeleport:ToggleTacoPreview()
     else
         print(string.format("|cff00ff00" .. L.VERSION_INFO .. "|r", ADDON_NAME))
         print(L.HELP_HINT)

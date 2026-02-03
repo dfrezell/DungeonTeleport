@@ -11,5 +11,5 @@ ignore:
   - AGENTS.md
   - .gitignore
   - .github
-  - images
   - screenshots
+  - icons

@@ -41,3 +41,4 @@ Once installed, the addon works automatically:
 - `/dt help` - Show available commands
 - `/dt reload` - Manually refresh the dungeon and raid teleport buttons
 - `/dt raids` - List raids that have teleport spells configured
+- `/dt taco` - Toggle the taco panda animation preview
