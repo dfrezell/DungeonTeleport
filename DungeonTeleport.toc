@@ -22,7 +22,7 @@
 ## Notes-zhCN: 为史诗钥石地下城和团队副本添加传送功能
 ## Notes-zhTW: 為傳奇鑰石地城和團隊副本添加傳送功能
 ## Author: Acorn-Bloodhoof
-## Version: 1.2.0
+## Version: 1.3.0
 ## SavedVariables: DungeonTeleportDB
 ## IconTexture: Interface\Icons\Spell_Arcane_Teleportundercity
 
