@@ -1,4 +1,4 @@
-## Interface: 110207, 120000, 120001, 120005
+## Interface: 110207, 120000, 120001, 120005, 120007
 ## Title: Dungeon Teleport
 ## Title-deDE: Dungeon-Teleport
 ## Title-esES: Teletransporte de Mazmorras
